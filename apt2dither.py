@@ -1,12 +1,41 @@
 #!/usr/bin/env python
 
-import miricoord.miricoord.imager.mirim_tools as mt
-import miricoord.miricoord.mrs.mrs_tools as mrst
-import miricoord.miricoord.lrs.lrs_tools as lrst
-#import pysiaf
 import re
+import os
+import miricoord.miricoord.imager.mirim_tools as mt
+import miricoord.miricoord.lrs.lrs_tools as lrst
+import miricoord.miricoord.mrs.mrs_tools as mrst
+dist_ver = mrst.version()
+print('Distortion solution: ', dist_ver)
 
+#import pysiaf
 #siaf = pysiaf.Siaf('MIRI')#,basepath='/Users/dlaw/jwcode/pysiaf/pysiaf/pre_delivery_data/MIRI')
+
+def get_test_file(fnum):
+    """
+    Relative pointer to current working directory for test files.
+    
+    Parameters: 
+
+        fnum - int variable (1,2,3) indicating which test input file to use.
+    
+    Returns:
+    
+        reffile - String path to selected test input file. 
+    """
+
+    rootdir= '.'
+
+    if (fnum == 1):
+        file='untitled.pointing'
+    elif (fnum == 2):
+        file='test.pointing'
+    elif (fnum == 3):
+        file='sub.pointing'
+        
+    reffile=os.path.join(rootdir,file)
+   
+    return reffile
 
 
 def get_data(file):
